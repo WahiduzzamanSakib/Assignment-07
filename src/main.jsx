@@ -21,11 +21,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <Suspense fallback={<h2>Loading...........</h2>}>
-            <Homepage dataPromise={dataPromise} />
-          </Suspense>
-        ),
+        element:
+          <Homepage dataPromise={dataPromise} />
       },
       {
         path: "timeline",
