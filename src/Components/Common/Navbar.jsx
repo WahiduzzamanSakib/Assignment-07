@@ -13,16 +13,19 @@ const Navbar = () => {
           </div>
           <div className="flex gap-2">
 
-            <NavLink to="/" className="btn flex items-center gap-2">
-              <Home /> Home
+            <NavLink to="/" className="btn flex items-center gap-1 sm:gap-2 text-sm sm:text-base px-2 sm:px-4 py-1 sm:py-2">
+              <Home className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Home</span>
             </NavLink>
 
-            <NavLink to="/timeline" className="btn flex items-center gap-2">
-              <Clock /> TimeLine
+            <NavLink to="/timeline" className="btn flex items-center gap-1 sm:gap-2 text-sm sm:text-base px-2 sm:px-4 py-1 sm:py-2">
+              <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">TimeLine</span>
             </NavLink>
 
-            <NavLink to="/stats" className="btn flex items-center gap-2">
-              <BarChart3 /> Stats
+            <NavLink to="/stats" className="btn flex items-center gap-1 sm:gap-2 text-sm sm:text-base px-2 sm:px-4 py-1 sm:py-2">
+              <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Stats</span>
             </NavLink>
 
           </div>
