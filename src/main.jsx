@@ -8,6 +8,7 @@ import { RouterProvider } from "react-router/dom";
 import Root from './Components/Root';
 import Timeline from './Components/Timeline';
 import Stats from './Components/Stats';
+import Error from './Components/Common/Error';
 
 
 const router = createBrowserRouter([
@@ -24,7 +25,7 @@ Component: Timeline
         Component: Stats
       }
     ],
-    //  errorElement: <h2>hsjksahlfdkj</h2>
+      errorElement: <Error/>
   },
 ]);
 
