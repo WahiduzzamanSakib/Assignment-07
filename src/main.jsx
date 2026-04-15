@@ -2,7 +2,6 @@ import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
-
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Root from './Components/Root';
@@ -10,6 +9,9 @@ import Timeline from './Components/Timeline';
 import Stats from './Components/Stats';
 import Error from './Components/Common/Error';
 import Homepage from './Components/Homepage';
+import Details from './Components/Details';
+
+
 
 const dataPromise = fetch("https://mocki.io/v1/db4c671e-d0d4-4361-86a7-d3f42d66bdc7")
   .then(res => res.json())
@@ -21,12 +23,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element:
-          <Homepage dataPromise={dataPromise} />
+        element: (
+          <Suspense fallback={<h2 className='text-3xl font-bold text-center my-10'>Loading..........</h2>}>
+            <Homepage dataPromise={dataPromise} />
+          </Suspense>
+        )
+      },
+      {
+        path: "/details/:id",
+        element: <Details/>
       },
       {
         path: "timeline",
-        element: <Timeline />,
+        element: <Timeline />
       },
       {
         path: "stats",

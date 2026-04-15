@@ -41,16 +41,14 @@ const Homepage = ({ dataPromise }) => {
                         </div>
 
                     </div>
-                     <h2 className='text-2xl font-bold my-3'>Your Friends</h2>
+                    <h2 className='text-2xl font-bold my-3'>Your Friends</h2>
 
                 </div>
             </div>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {data.map((item, index) => (
-                    <Suspense key={index} fallback={<h2>Loading...........</h2>}>
-                        <Card item={item} />
-                    </Suspense>
+                    <Card key={index} item={item} />
                 ))}
             </div>
         </div>
