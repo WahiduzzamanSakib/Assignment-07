@@ -11,7 +11,6 @@ import { FaVideo } from "react-icons/fa";
 const Details = () => {
     const { state: item } = useLocation();
 
-    console.log(item)
 
     return (
         <div className="bg-gray-200">
