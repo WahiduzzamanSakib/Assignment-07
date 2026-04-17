@@ -10,6 +10,7 @@ import Stats from './Components/Stats';
 import Error from './Components/Common/Error';
 import Homepage from './Components/Homepage';
 import Details from './Components/Details';
+import DataProvider from './Components/DataContext';
 
 
 
@@ -20,11 +21,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Homepage/>
+        element: <Homepage />
       },
       {
         path: "/details/:id",
-        element: <Details/>
+        element: <Details />
       },
       {
         path: "timeline",
@@ -41,6 +42,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />,
+    <DataProvider>
+      <RouterProvider router={router} />,
+    </DataProvider>
   </StrictMode>,
 )

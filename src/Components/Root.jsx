@@ -13,7 +13,6 @@ const Root = () => {
             <Outlet />
             <Footer/>
 
-    {/* Tostify */}
              <ToastContainer />
         </div>
     );

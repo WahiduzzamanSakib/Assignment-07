@@ -6,6 +6,9 @@ import { MdDeleteForever, MdOutlineTextsms, MdOutlineAddIcCall } from "react-ico
 import { FaVideo } from "react-icons/fa";
 import { useParams } from "react-router";
 import useData from "./Common/useData";
+import { useContext } from "react";
+import { GetData } from "./DataContext";
+import { toast } from "react-toastify";
 
 
 
@@ -13,7 +16,26 @@ import useData from "./Common/useData";
 const Details = () => {
     const { id } = useParams();
     const { data, loading } = useData();
-    const item = data.find((item) => String(item.id) === id);
+    const item = data?.find((item) => String(item.id) === id);
+
+console.log(item)
+    const { setContest } = useContext(GetData);
+
+    const handleCall = () => {
+        setContest(prev => [...prev, { item, action: "call" }]);
+        toast.success(`Call with ${item.name}`);
+    };
+
+    const handleText = () => {
+        setContest(prev => [...prev, { item, action: "text" }]);
+        toast.success(`Text with ${item.name}`);
+    };
+
+    const handleVideo = () => {
+        setContest(prev => [...prev, { item, action: "video" }]);
+        toast.success(`Video call with ${item.name}`);
+    }
+
 
     if (loading) {
         return <div className="flex justify-center items-center my-10">
@@ -44,7 +66,7 @@ const Details = () => {
                                 {item.status}
                             </span>
                         </div>
-                        <span class="px-4 py-1  text-xs font-bold rounded-full uppercase ">
+                        <span className="px-4 py-1  text-xs font-bold rounded-full uppercase ">
                             <div className="flex gap-2  justify-center">
                                 {item.tags.map((tag, index) => (
                                     <span key={index} className="px-2 py-1 text-xs bg-green-400 rounded-full">
@@ -96,19 +118,20 @@ const Details = () => {
                         <h2 className="my-2 font-bold">Quick Check-In</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
 
-                            <button className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
-
+                            <button
+                                onClick={handleCall}
+                                className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300 flex flex-col items-center gap-2"
+                            >
                                 <MdOutlineAddIcCall size={24} className="text-slate-700" />
                                 <span className="text-sm font-medium">Call</span>
-
                             </button>
 
-                            <button className="bg-base-100 shadow-sm rounded-lg p-4 text-center w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
+                            <button onClick={handleText} className="bg-base-100 shadow-sm rounded-lg p-4 text-center w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
                                 <MdOutlineTextsms size={24} />
                                 <span className="text-sm font-medium">Text</span>
                             </button>
 
-                            <button className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
+                            <button onClick={handleVideo} className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
 
                                 <FaVideo size={24} className="text-slate-700" />
                                 <span className="text-sm font-medium">Video</span>
