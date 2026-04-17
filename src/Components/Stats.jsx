@@ -7,7 +7,9 @@ const Stats = () => {
   const { data, loading } = useData();
 
   if (loading) {
-    return <p>Loading Chart...</p>;
+    return <div className="flex justify-center items-center my-10">
+            <span className="loading loading-spinner loading-xl"></span>
+        </div>
   }
 
  
