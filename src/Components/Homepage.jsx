@@ -1,8 +1,13 @@
-import React, { Suspense, use } from 'react';
+import React from 'react';
 import Card from './Card';
+import useData from './Common/useData';
 
-const Homepage = ({ dataPromise }) => {
-    const data = use(dataPromise)
+
+const Homepage = () => {
+
+    const { data, loading } = useData();
+
+
     return (
         <div>
             <div>
@@ -46,11 +51,21 @@ const Homepage = ({ dataPromise }) => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                {data.map((item, index) => (
-                    <Card key={index} item={item} />
-                ))}
-            </div>
+        
+            {loading ? (
+                <div className="flex justify-center items-center my-10">
+                   <span className="loading loading-spinner loading-xl"></span>
+                </div>
+            ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    {data.map((item, index) => (
+                        <Card key={index} item={item} />
+                    ))}
+                </div>
+            )}
+
+
+
         </div>
     );
 };

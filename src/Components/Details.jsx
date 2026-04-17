@@ -17,7 +17,7 @@ const Details = () => {
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6  ">
 
 
-                <div className="md:col-span-4 space-y-6 my-6 max-w-3xl">
+                <div className="md:col-span-4 space-y-6 my-6 max-w-2xl">
 
                     <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3 text-center">
 
@@ -88,19 +88,19 @@ const Details = () => {
                         <h2 className="my-2 font-bold">Quick Check-In</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
 
-                            <button className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-200  flex flex-col items-center gap-2">
+                            <button className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
 
                                 <MdOutlineAddIcCall size={24} className="text-slate-700" />
                                 <span className="text-sm font-medium">Call</span>
 
                             </button>
 
-                            <button className="bg-base-100 shadow-sm rounded-lg p-4 text-center w-full cursor-pointer hover:bg-base-200  flex flex-col items-center gap-2">
+                            <button className="bg-base-100 shadow-sm rounded-lg p-4 text-center w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
                                 <MdOutlineTextsms size={24} />
                                 <span className="text-sm font-medium">Text</span>
                             </button>
 
-                            <button className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-200  flex flex-col items-center gap-2">
+                            <button className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
 
                                 <FaVideo size={24} className="text-slate-700" />
                                 <span className="text-sm font-medium">Video</span>

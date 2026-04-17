@@ -38,9 +38,9 @@ const Footer = () => {
                     <p>© 2026 KeenKeeper. All rights reserved.</p>
 
                     <div className="flex gap-8">
-                        <a className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a className="hover:text-white transition-colors">Terms of Service</a>
-                        <a className="hover:text-white transition-colors">Cookies</a>
+                        <a className="hover:text-white">Privacy Policy</a>
+                        <a className="hover:text-white">Terms of Service</a>
+                        <a className="hover:text-white">Cookies</a>
                     </div>
                 </div>
 
