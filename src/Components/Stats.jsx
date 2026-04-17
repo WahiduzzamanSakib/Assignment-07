@@ -29,8 +29,8 @@ const Stats = () => {
   return (
     <>
      <h3 className="text-3xl font-bold container mx-auto">Friendship Analytics</h3>
-    <div className="my-10 container mx-auto ml-20 " style={{ width: "100%", height: 400}}>
-      <h3>By Interaction Type</h3>
+    <div className="my-10 container mx-auto bg-base-200 rounded-lg  p-4" style={{ width: "100%", height: 400}}>
+      <h3 className="ml-5">By Interaction Type</h3>
       <ResponsiveContainer>
         <PieChart>
           <Pie
