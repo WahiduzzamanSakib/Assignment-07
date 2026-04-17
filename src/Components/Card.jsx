@@ -10,7 +10,7 @@ const Card = ({ item }) => {
         "on-track": "bg-green-500",
     };
     return (
-       <Link to={`/details/${item.id}` }state={item}>
+       <Link to={`/details/${item.id}` }>
             <div>
                 <div class="flex items-center justify-center p-4 ">
                     <div class="bg-white w-64 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border border-gray-100 ">

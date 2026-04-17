@@ -1,17 +1,25 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+
 import { CiAlarmOn } from "react-icons/ci";
 import { FaArchive } from "react-icons/fa";
 import { MdDeleteForever, MdOutlineTextsms, MdOutlineAddIcCall } from "react-icons/md";
 import { FaVideo } from "react-icons/fa";
+import { useParams } from "react-router";
+import useData from "./Common/useData";
 
 
 
 
 const Details = () => {
-    const { state: item } = useLocation();
+    const { id } = useParams();
+    const { data, loading } = useData();
+    const item = data.find((item) => String(item.id) === id);
 
-
+    if (loading) {
+        return <div className="flex justify-center items-center my-10">
+            <span className="loading loading-spinner loading-xl"></span>
+        </div>
+    }
     return (
         <div className="bg-gray-200">
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6  ">
