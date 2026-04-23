@@ -14,9 +14,9 @@ const Stats = () => {
   }, {});
 
   const formatLabel = (type) => {
-    if (type === "call") return "📞 Call";
-    if (type === "text") return "💬 Text";
-    if (type === "video") return "🎥 Video";
+    if (type === "call") return "Call";
+    if (type === "text") return "Text";
+    if (type === "video") return "Video";
     return type;
   };
 
