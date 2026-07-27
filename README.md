@@ -7,6 +7,10 @@ This project is a simple interactive web application built using **React.js**. I
 
 ---
 
+
+Live Link: https://assignment-07-kappa.vercel.app
+---
+
 ## 🛠️ Technologies Used
 
 * React.js
