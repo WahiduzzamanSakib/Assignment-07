@@ -29,34 +29,6 @@ Live Link: https://assignment-07-kappa.vercel.app
 
 ---
 
-## ⚙️ Installation & Setup
-
-Follow these steps to run the project locally:
-
-### 1. Clone the repository
-
-```bash id="k9xq2a"
-git clone https://github.com/WahiduzzamanSakib/Assignment-07.git
-```
-
-### 2. Navigate to the project folder
-
-```bash id="r2m8vp"
-cd Assignment-07
-```
-
-### 3. Install dependencies
-
-```bash id="t5n1sd"
-npm install
-```
-
-### 4. Start the development server
-
-```bash id="u8c3lw"
-npm start
-```
-
 
 ## 📚 What I Learned
 
