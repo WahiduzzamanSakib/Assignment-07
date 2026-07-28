@@ -1,151 +1,193 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { CiAlarmOn } from "react-icons/ci";
-import { FaArchive } from "react-icons/fa";
-import { MdDeleteForever, MdOutlineTextsms, MdOutlineAddIcCall } from "react-icons/md";
-import { FaVideo } from "react-icons/fa";
-import { useParams } from "react-router";
+import { FaArchive, FaVideo } from "react-icons/fa";
+import {
+  MdDeleteForever,
+  MdOutlineTextsms,
+  MdOutlineAddIcCall,
+} from "react-icons/md";
+
+import { useParams } from "react-router-dom";
 import useData from "./Common/useData";
-import { useContext } from "react";
 import { GetData } from "./DataContext";
 import { toast } from "react-toastify";
 
 
 
-
 const Details = () => {
-    const { id } = useParams();
-    const { data, loading } = useData();
-    const item = data?.find((item) => String(item.id) === id);
-
-console.log(item)
-    const { setContest } = useContext(GetData);
-
-    const handleCall = () => {
-        setContest(prev => [...prev, { item, action: "call" }]);
-        toast.success(`Call with ${item.name}`);
-    };
-
-    const handleText = () => {
-        setContest(prev => [...prev, { item, action: "text" }]);
-        toast.success(`Text with ${item.name}`);
-    };
-
-    const handleVideo = () => {
-        setContest(prev => [...prev, { item, action: "video" }]);
-        toast.success(`Video call with ${item.name}`);
-    }
-
-
-    if (loading) {
-        return <div className="flex justify-center items-center my-10">
-            <span className="loading loading-spinner loading-xl"></span>
-        </div>
-    }
+  const { id } = useParams();
+  const { data, loading } = useData();
+  const { setContest } = useContext(GetData);
+ 
+  const item = data?.find((item) => String(item.id) === id);
+  
+  if (loading) {
     return (
-        <div className="bg-gray-200">
-            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6  ">
+      <div className="flex justify-center items-center my-10">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
+  // Safety check
+  if (!item) {
+    return (
+      <div className="text-center my-10 text-red-500 font-semibold">
+        User not found
+      </div>
+    );
+  }
 
-                <div className="md:col-span-4 space-y-6 my-6 max-w-2xl">
+  // Actions
+  const handleCall = () => {
+    setContest((prev) => [...prev, { item, action: "call" }]);
+    toast.success(`Call with ${item.name}`);
+  };
 
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3 text-center">
+  const handleText = () => {
+    setContest((prev) => [...prev, { item, action: "text" }]);
+    toast.success(`Text with ${item.name}`);
+  };
 
-                        <img
-                            src={item.picture}
-                            alt={item.name}
-                            className="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md"
-                        />
+  const handleVideo = () => {
+    setContest((prev) => [...prev, { item, action: "video" }]);
+    toast.success(`Video call with ${item.name}`);
+  };
 
-                        <h2 className="mt-4 text-xl font-bold text-slate-800">
-                            {item.name}
-                        </h2>
+  return (
+    <div className="bg-gray-200">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
 
-                        <div className="flex flex-col items-center gap-2 mt-2">
-                            <span className="px-3 py-0.5 bg-red-500 text-white text-xs font-bold rounded-full uppercase">
-                                {item.status}
-                            </span>
-                        </div>
-                        <span className="px-4 py-1  text-xs font-bold rounded-full uppercase ">
-                            <div className="flex gap-2  justify-center">
-                                {item.tags.map((tag, index) => (
-                                    <span key={index} className="px-2 py-1 text-xs bg-green-400 rounded-full">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </span>
+        {/* LEFT */}
+        <div className="md:col-span-4 space-y-6 my-6">
 
-                        <h2 className="text-gray-400">{item.bio}</h2>
-                    </div>
-                    <div className="flex flex-col gap-3">
-                        <button className="btn"><CiAlarmOn size={24} /> Snooze 2 weeks</button>
-                        <button className="btn"><FaArchive /> Archive</button>
-                        <button className="btn text-red-500"><MdDeleteForever size={22} /> Delete</button>
-                    </div>
-                </div>
+          <div className="bg-white rounded-xl shadow-sm p-4 text-center">
 
+            <img
+              src={item.picture}
+              alt={item.name}
+              className="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white shadow-md"
+            />
 
-                <div className="md:col-span-8 space-y-6 my-12">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <h2 className="mt-4 text-xl font-bold text-slate-800">
+              {item.name}
+            </h2>
 
-                        <div className="bg-base-100 shadow-sm p-4 rounded-lg text-center">
-                            <h2 className="font-bold text-2xl">{item.days_since_contact}</h2>
-                            <h4 className="text-sm text-gray-500">Days Since Contact</h4>
-                        </div>
+            <span className="inline-block mt-2 px-3 py-1 bg-red-500 text-white text-xs rounded-full uppercase">
+              {item.status}
+            </span>
 
-                        <div className="bg-base-100 shadow-sm p-4 rounded-lg text-center">
-                            <h2 className="font-bold text-2xl">{item.goal}</h2>
-                            <h4 className="text-sm text-gray-500">Goal Days</h4>
-                        </div>
+            {/* Tags */}
+            <div className="flex gap-2 justify-center mt-3 flex-wrap">
+              {item.tags?.map((tag, index) => (
+                <span
+                  key={index}
+                  className="px-2 py-1 text-xs bg-green-400 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
 
-                        <div className="bg-base-100 shadow-sm p-4 rounded-lg text-center">
-                            <h2 className="font-bold text-xl">{item.next_due_date}</h2>
-                            <h4 className="text-sm text-gray-500">Next Due</h4>
-                        </div>
+            <p className="text-gray-500 mt-2">{item.bio}</p>
+          </div>
 
-                    </div>
+          <div className="flex flex-col gap-3">
+            <button className="btn">
+              <CiAlarmOn size={22} /> Snooze 2 weeks
+            </button>
+            <button className="btn">
+              <FaArchive /> Archive
+            </button>
+            <button className="btn text-red-500">
+              <MdDeleteForever size={22} /> Delete
+            </button>
+          </div>
+        </div>
 
-                    <div className="bg-white p-6 rounded-xl shadow-sm">
-                        <div className="flex justify-between">
-                            <h3 className="font-bold text-lg">Relationship Goal</h3>
-                            <button className="btn">Edit</button>
-                        </div>
-                        <p>Connect every <span className="font-bold">{item.goal} days</span></p>
-                    </div>
+        {/* RIGHT */}
+        <div className="md:col-span-8 space-y-6 my-12">
 
-                    <div className="bg-base-200 p-5">
-                        <h2 className="my-2 font-bold">Quick Check-In</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+          {/* Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-                            <button
-                                onClick={handleCall}
-                                className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300 flex flex-col items-center gap-2"
-                            >
-                                <MdOutlineAddIcCall size={24} className="text-slate-700" />
-                                <span className="text-sm font-medium">Call</span>
-                            </button>
+            <div className="bg-white shadow-sm p-4 rounded-lg text-center">
+              <h2 className="font-bold text-2xl">
+                {item.days_since_contact}
+              </h2>
+              <h4 className="text-sm text-gray-500">
+                Days Since Contact
+              </h4>
+            </div>
 
-                            <button onClick={handleText} className="bg-base-100 shadow-sm rounded-lg p-4 text-center w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
-                                <MdOutlineTextsms size={24} />
-                                <span className="text-sm font-medium">Text</span>
-                            </button>
+            <div className="bg-white shadow-sm p-4 rounded-lg text-center">
+              <h2 className="font-bold text-2xl">{item.goal}</h2>
+              <h4 className="text-sm text-gray-500">Goal Days</h4>
+            </div>
 
-                            <button onClick={handleVideo} className="bg-base-100 shadow-sm rounded-lg p-4 w-full cursor-pointer hover:bg-base-300  flex flex-col items-center gap-2">
+            <div className="bg-white shadow-sm p-4 rounded-lg text-center">
+              <h2 className="font-bold text-sm">
+                {item.next_due_date}
+              </h2>
+              <h4 className="text-sm text-gray-500">Next Due</h4>
+            </div>
 
-                                <FaVideo size={24} className="text-slate-700" />
-                                <span className="text-sm font-medium">Video</span>
+          </div>
 
-                            </button>
+          {/* Goal */}
+          <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="flex justify-between">
+              <h3 className="font-bold text-lg">
+                Relationship Goal
+              </h3>
+              <button className="btn">Edit</button>
+            </div>
 
-                        </div>
+            <p>
+              Connect every{" "}
+              <span className="font-bold">{item.goal} days</span>
+            </p>
+          </div>
 
-                    </div>
-                </div>
+          {/* Actions */}
+          <div className="bg-base-200 p-5 rounded-xl">
+
+            <h2 className="my-2 font-bold">Quick Check-In</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+              <button
+                onClick={handleCall}
+                className="bg-white shadow-sm rounded-lg p-4 hover:bg-gray-100 flex flex-col items-center gap-2"
+              >
+                <MdOutlineAddIcCall size={24} />
+                Call
+              </button>
+
+              <button
+                onClick={handleText}
+                className="bg-white shadow-sm rounded-lg p-4 hover:bg-gray-100 flex flex-col items-center gap-2"
+              >
+                <MdOutlineTextsms size={24} />
+                Text
+              </button>
+
+              <button
+                onClick={handleVideo}
+                className="bg-white shadow-sm rounded-lg p-4 hover:bg-gray-100 flex flex-col items-center gap-2"
+              >
+                <FaVideo size={24} />
+                Video
+              </button>
 
             </div>
+          </div>
+
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Details;

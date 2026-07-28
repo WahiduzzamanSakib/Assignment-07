@@ -1,49 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router';
-
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({ item }) => {
+  const statusColor = {
+    overdue: "bg-red-500",
+    "on-track": "bg-green-500",
+    active: "bg-blue-500",
+  };
 
-    const statusColor = {
-        overdue: "bg-red-500",
-        "almost due": "bg-yellow-500",
-        "on-track": "bg-green-500",
-    };
-    return (
-        <Link to={`/details/${item.id}`}>
-            <div>
-                <div class="flex items-center justify-center p-4 ">
-                    <div class="bg-white w-64 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border border-gray-100 ">
+  return (
+    <Link to={`/details/${item.id}`}>
+      <div className="flex items-center justify-center p-4">
+        <div className="bg-white w-64 rounded-2xl shadow-lg p-6 flex flex-col items-center text-center border border-gray-100">
 
-                        <div className="mb-4">
-                            <img src={item.picture} alt="Profile" className="rounded-full w-24 h-24 object-cover" />
-                        </div>
+          <img
+            src={item.picture}
+            alt={item.name}
+            className="rounded-full w-24 h-24 object-cover mb-4"
+          />
 
-                        <h2 class="text-xl font-bold text-slate-700">{item.name}</h2>
-                        <p class="text-sm text-slate-400 mt-1">{item.days_since_contact} days</p>
+          <h2 className="text-xl font-bold text-slate-700">
+            {item.name}
+          </h2>
 
-                        <div class="mt-4 flex flex-col gap-2">
-                            <span class="px-4 py-1  text-xs font-bold rounded-full uppercase ">
-                                <div className="flex gap-2">
-                                    {item.tags.map((tag, index) => (
-                                        <span key={index} className="px-2 py-1 text-xs bg-green-400 rounded-full">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </span>
+          <p className="text-sm text-slate-400 mt-1">
+            {item.days_since_contact} days
+          </p>
 
-                        </div>
-                        <span className={`px-3 py-2 text-white text-sm font-medium rounded-2xl ${statusColor[item.status]}`}>
-                            {item.status}
-                        </span>
+          {/* Tags */}
+          <div className="mt-3 flex flex-wrap gap-2 justify-center">
+            {item.tags?.map((tag, index) => (
+              <span
+                key={index}
+                className="px-2 py-1 text-xs bg-green-400 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-
-                    </div>
-                </div>
-            </div>
-        </Link>
-    );
+          {/* Status */}
+          <span
+            className={`mt-3 px-3 py-2 text-white text-sm font-medium rounded-2xl ${
+              statusColor[item.status] || "bg-gray-400"
+            }`}
+          >
+            {item.status}
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
 };
 
 export default Card;

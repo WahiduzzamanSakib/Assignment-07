@@ -1,4 +1,4 @@
-<footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
+{/* <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
   <aside>
     <svg
       width="50"
@@ -37,4 +37,4 @@
     <a className="link link-hover">Privacy policy</a>
     <a className="link link-hover">Cookie policy</a>
   </nav>
-</footer>
+</footer> */}
