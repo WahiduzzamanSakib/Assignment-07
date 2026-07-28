@@ -3,7 +3,7 @@
 
 ## 📌 Short Description
 
-This project is a simple interactive web application built using **React.js**. It demonstrates component-based UI design and state management, along with a responsive and user-friendly interface. The application is deployed using **Netlify** for live hosting and easy access from any device.
+This project is a simple interactive web application built using **React.js**. It demonstrates component-based UI design and state management, along with a responsive and user-friendly interface. The application is deployed using **Vercel** for live hosting and easy access from any device.
 
 ---
 
