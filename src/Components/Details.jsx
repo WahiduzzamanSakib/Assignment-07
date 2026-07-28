@@ -30,7 +30,6 @@ const Details = () => {
     );
   }
 
-  // Safety check
   if (!item) {
     return (
       <div className="text-center my-10 text-red-500 font-semibold">
@@ -78,7 +77,7 @@ const Details = () => {
               {item.status}
             </span>
 
-            {/* Tags */}
+         
             <div className="flex gap-2 justify-center mt-3 flex-wrap">
               {item.tags?.map((tag, index) => (
                 <span
