@@ -1,5 +1,5 @@
 
-# Assignment 07 – Interactive Web Project
+# KeenKeeper – Interactive Web Project
 
 ## 📌 Short Description
 
